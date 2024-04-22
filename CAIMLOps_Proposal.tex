@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.75in]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{lipsum}
+\usepackage{appendix}
+
+
+\pagenumbering{roman}
+\newcolumntype{P}[1]{>{\raggedright\vrule height4ex width 0pt}p{#1}<{\vrule depth 2.5ex width 0pt}}
+
+
+\title{Flight Delay Prediction Challenge Proposal}
+\author{CAIMLOps}
+\date{April 2024}
+
+\begin{document}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{refactory.jpg}
+\end{figure}
+\maketitle
+\titlepage
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\section{Introduction}
+CAIMLOps, a team of students at refractory in the course of AI/ML aims to predict the estimated duration of flight delays per flight in Tunisia.
+\subsection{Problem Description}
+Flight delays have significant repercussions on various stakeholders within the air travel ecosystem \cite{sternberg2017review}. Not only do they inconvenience passengers and disrupt schedules, but they also lead to decreased efficiency, increased capital costs, reallocation of resources, and additional crew expenses. Furthermore, a poor record of flight delays can adversely impact an airline's reputation and passenger demand. To address these challenges, we propose the development of a flight delay predictive model using machine learning techniques. By accurately predicting the duration of flight delays, we aim to empower airlines and other industry players to implement proactive measures to mitigate the impact of delays, minimize losses, and enhance overall operational efficiency \cite{alfarhood2024predicting}.
+
+\subsection{\textbf{Main Objective}}
+Develop a Flight Delay Prediction Model: Create a machine learning model capable of accurately predicting the estimated duration of flight delays for individual flights.
+\subsubsection{\textbf{Specific Objective}}
+1. Mitigate the Impact of Flight Delays: Empower airlines and industry stakeholders to proactively manage and minimize the adverse effects of flight delays on passengers, operational efficiency, and resource utilization.
+
+2. Enhance Operational Efficiency: Improve the overall efficiency of airline operations by providing timely insights into potential flight delays and enabling proactive decision-making in crew scheduling, aircraft allocation, and route planning.
+
+3. Optimize Resource Allocation: Enable efficient allocation of resources, including flight crews, aircraft, and ground personnel, to mitigate the impact of delays and minimize associated costs.
+
+\section{Proposed Approach}
+1 Data Collection and Preprocessing:
+Cleanse and preprocess the data to handle missing values, outliers, and inconsistencies.
+Integrate external datasets such as weather forecasts, airport congestion data, and flight schedules to enrich the feature set and improve model performance.
+
+2 Feature Engineering:
+Extract relevant features from the dataset, including temporal features (time of day, day of the week), geographical features (airport location, airspace congestion), and categorical features (airline, aircraft type) \cite{wang2022flight}.
+Engineer new features that capture the interactions and relationships between different variables to enhance the predictive power of the model.
+
+3 Model Selection and Training:
+Explore a variety of machine learning algorithms suitable for regression tasks, such as linear regression, decision trees, random forests, gradient boosting, and neural networks.
+Conduct thorough experimentation to identify the most effective combination of features and algorithms for predicting flight delays accurately.
+Employ techniques like cross-validation and hyper-parameter tuning to optimize model performance and generalization ability.
+
+4 Evaluation and Validation:
+Evaluate the trained models using appropriate performance metrics such as mean absolute error, mean squared error, and R-squared.
+
+5 Validate the models on unseen test data to assess their robustness and ability to generalize to new instances.
+Conduct sensitivity analysis to understand the relative importance of different features and identify potential areas for improvement.
+
+6 Deployment and Integration:
+Deploy the finalized predictive model into production environments, allowing real-time prediction of flight delays.
+Integrate the model with existing airline operations systems and decision support tools to facilitate proactive decision-making and resource allocation.
+Continuously monitor model performance and update it periodically to adapt to evolving patterns and dynamics in air travel
+
+\section{Work Schedule}
+\begin{center}
+  \begin{tabular}{|p{3cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+    \hline
+    \textbf{Action plan}& \textbf{Week 1} &\textbf{Week 2} &\textbf{Week 3}& \textbf{Week 4}\\[10pt]
+    \hline
+    Team Registration& \multicolumn{1}{c}{\cellcolor{gray}} & & & \\[10pt]
+    \hline
+    Proposal writing and presentation& & \multicolumn{1}{c}{\cellcolor{gray}}& &\\
+    \hline
+    Model training and Testing&  & & \multicolumn{1}{c}{\cellcolor{gray}}&\\
+    \hline
+    Report writing and presentation& & &&\multicolumn{1}{c}{\cellcolor{gray}}\\
+    \hline
+\end{tabular}  
+\end{center}
+\section{Expected Outcome}
+This study is intended to correlate all the problem, scope and method for getting most accurate result. Although some features might seem to be the causes of flight delays \cite{yazdi2020flight}, the study also focuses on digging up other micro causes, this will lead to:
+\begin{itemize}
+    \item Reduction in flight delays within the first year of implementation.
+    \item Improved customer satisfaction ratings for airlines and airports.
+\end{itemize}
+\section{Conclusion}
+By leveraging data-driven solutions and fostering collaboration across the aviation industry, we can significantly reduce the incidence and impact of flight delays. This proposal outlines a systematic approach to enhance flight delay management, ultimately improving the travel experience for passengers and optimizing operations for airlines and airports.
+\newpage
+\bibliographystyle{elsarticle-num}
+\bibliography{myBib}
+\newpage
+\appendix
+\section{proposed models}
+\subsection{LSTM}
+\vspace{1cm}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{model arch.png}
+\end{center}
+\vspace{1.5cm}
+\subsection{XGBoost}
+\vspace{1cm}
+\begin{center}
+    \includegraphics{xgboost.png}
+\end{center}
+\end{document}
