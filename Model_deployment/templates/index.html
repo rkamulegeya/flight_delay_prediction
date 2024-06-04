@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Deployment with Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .predict-button {
+            width: 200px;
+            padding: 8px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .predict-button:hover {
+            background-color: #218838;
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Deployment with Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body style="background-color: #1e2852;">
+    <div class="container">
+        <h1 style="color: #333; text-align: center;">Flight Delay Predictor</h1>
+        <form id="prediction-form" class="form">
+            <div class="grid-container">
+                <div>
+                    <label for="date_flightDayofyear" style="color: #333;">Day of Year:</label>
+                    <input type="text" id="date_flightDayofyear" name="date_flightDayofyear" placeholder="344" required>
+                </div>
+                <div>
+                    <label for="std_hr" style="color: #333;">Scheduled Hour of Departure:</label>
+                    <input type="text" id="std_hr" name="std_hr" placeholder="5" required>
+                </div>
+                <div>
+                    <label for="flight_number" style="color: #333;">Flight Number:</label>
+                    <input type="text" id="flight_number" name="flight_number" placeholder="TU 0790" required>
+                </div>
+                <div>
+                    <label for="aircraft_code" style="color: #333;">Aircraft Code:</label>
+                    <input type="text" id="aircraft_code" name="aircraft_code" placeholder="TU 320IMV" required>
+                </div>
+                <div>
+                    <label for="date_flightWeek" style="color: #333;">Month Week:</label>
+                    <input type="text" id="date_flightWeek" name="date_flightWeek" placeholder="4" required>
+                </div>
+            </div>
+            <button type="submit" class="predict-button">Delay Minutes</button>
+        </form>
+        <div id="result" style="color: #333; text-align: center;"></div>
+        <p style="color: #333; text-align: center; font-style: italic;">Developed by CAIMLOps @2024</p>
+    </div>
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formObject),
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    document.getElementById('result').innerText = 'Minutes: ' + result.prediction;
+                } else {
+                    document.getElementById('result').innerText = 'Error: ' + result.error;
+                }
+            } catch (error) {
+                document.getElementById('result').innerText = 'Error: ' + error.message;
+            }
+        });
+    </script>
+</body>
+</html>
