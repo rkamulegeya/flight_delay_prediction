@@ -27,7 +27,7 @@ arrival_point_values = df['arrival_point'].tolist()
 scheduled_time_departure_values = df['scheduled_time_departure'].tolist()
 scheduled_time_arrival_values = df['scheduled_time_arrival'].tolist()
 
-status_values = df['status'].tolist()
+# status_values = df['status'].tolist()
 year_datop_values = df['year_datop'].tolist()
 month_datop_values = df['month_datop'].tolist()
 day_datop_values = df['day_datop'].tolist()
@@ -65,6 +65,8 @@ def predict():
         date_flightWeek = int(data['date_flightWeek'])
         aircraft_code = data['aircraft_code']
         std_hr = int(data['std_hr'])
+        status=data['status']
+        
 
         # Constant features - using random values
         id = random.choice(id_values)
@@ -73,7 +75,7 @@ def predict():
         scheduled_time_departure = random.choice(scheduled_time_departure_values)
         scheduled_time_arrival = random.choice(scheduled_time_arrival_values)
 
-        status = random.choice(status_values)
+        # status = random.choice(status_values)
         year_datop = random.choice(year_datop_values)
         month_datop = random.choice(month_datop_values)
         day_datop = random.choice(day_datop_values)
